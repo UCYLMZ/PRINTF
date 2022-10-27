@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_int.c                                        :+:      :+:    :+:   */
+/*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uyilmaz <uyilmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 13:28:16 by uyilmaz           #+#    #+#             */
-/*   Updated: 2022/10/27 18:31:35 by uyilmaz          ###   ########.fr       */
+/*   Created: 2022/10/27 11:51:55 by uyilmaz           #+#    #+#             */
+/*   Updated: 2022/10/27 18:05:01 by uyilmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_int(int n, int *count)
+int	ft_strlen(char *str)
 {
-	if (n == -2147483648)
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	print_string(char *str, int *count)
+{
+	if (!str)
 	{
-		write (1, "-2147483648", 11);
-		*count += 11;
+		*count += (write (1, "(null)", 6));
 		return ;
 	}
-	if (n < 0)
-	{
-		n *= -1;
-		print_char('-', count);
-	}
-	if (n > 9)
-	{
-		print_int(n / 10, count);
-		print_int(n % 10, count);
-	}
-	else
-		print_char(n + 48, count);
+	*count += write (1, str, ft_strlen(str));
 }

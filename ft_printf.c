@@ -6,32 +6,28 @@
 /*   By: uyilmaz <uyilmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:35:07 by uyilmaz           #+#    #+#             */
-/*   Updated: 2022/10/26 17:35:28 by uyilmaz          ###   ########.fr       */
+/*   Updated: 2022/10/27 18:27:07 by uyilmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	formatter(va_list s, char f)
+void	formatter(va_list s, char f, int *count)
 {
-	int	count;
-
-	count = 0;
 	if (f == 'd' || f == 'i')
-		count += print_int(va_arg(s, int));
+		print_int(va_arg(s, int), count);
 	else if (f == 'c')
-		count += print_char(va_arg(s, char));
+		print_char(va_arg(s, int), count);
 	else if (f == 's')
-		count += print_string(va_arg(s, char *));
+		print_string(va_arg(s, char *), count);
 	else if (f == 'u')
-		count += print_unsigned(va_arg(s, unsigned int));
+		print_unsigned(va_arg(s, unsigned int), count);
 	else if (f == 'p')
-		count += print_adr(va_arg(s, unsigned long));
+		print_ptr(va_arg(s, size_t), count);
 	else if (f == 'X' || f == 'x')
-		count += print_hex(va_arg(s, int));
+		print_hex(f, va_arg(s, int), count);
 	else if (f == '%')
-		count += print_percent();
-	return (count);
+		print_char('%', count);
 }
 
 int	ft_printf(const char *s, ...)
@@ -41,18 +37,16 @@ int	ft_printf(const char *s, ...)
 	va_list	lst;
 
 	va_start(lst, s);
+	count = 0;
 	i = 0;
 	while (s[i])
 	{
 		if (s[i] == '%')
-			count += formatter(lst, s[++i]);
+			formatter(lst, s[++i], &count);
 		else
-		{
-			ft_putchar(1, &s[i], 1);
-			count++;
-		}
+			print_char(s[i], &count);
 		i++;
 	}
-	va_end(s);
+	va_end(lst);
 	return (count);
 }

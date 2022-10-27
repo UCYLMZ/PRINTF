@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uyilmaz <uyilmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 12:17:27 by uyilmaz           #+#    #+#             */
-/*   Updated: 2022/10/26 16:15:08 by uyilmaz          ###   ########.fr       */
+/*   Created: 2022/10/27 11:47:45 by uyilmaz           #+#    #+#             */
+/*   Updated: 2022/10/27 17:53:32 by uyilmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include <unistd.h>
-# include <stdarg.h>
+#include "ft_printf.h"
 
-int		percent_counter(char *first_param);
-int		ft_printf(const char *s, ...);
-int		print_int(int n);
-#endif
+void	print_char(char c, int *count)
+{
+	write (1, &c, 1);
+	*count += 1;
+}

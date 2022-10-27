@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_int.c                                        :+:      :+:    :+:   */
+/*   print_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uyilmaz <uyilmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 13:28:16 by uyilmaz           #+#    #+#             */
-/*   Updated: 2022/10/27 18:31:35 by uyilmaz          ###   ########.fr       */
+/*   Created: 2022/10/27 12:58:41 by uyilmaz           #+#    #+#             */
+/*   Updated: 2022/10/27 17:56:42 by uyilmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_int(int n, int *count)
+void	norm_killer(size_t value, char c, int *count)
 {
-	if (n == -2147483648)
+	if (c == 'X')
 	{
-		write (1, "-2147483648", 11);
-		*count += 11;
-		return ;
-	}
-	if (n < 0)
-	{
-		n *= -1;
-		print_char('-', count);
-	}
-	if (n > 9)
-	{
-		print_int(n / 10, count);
-		print_int(n % 10, count);
+		if (value > 9)
+			print_char(value + 55, count);
+		else
+			print_char(value + 48, count);
 	}
 	else
-		print_char(n + 48, count);
+	{
+		if (value > 9)
+			print_char(value + 55 + 32, count);
+		else
+			print_char(value + 48, count);
+	}
+}
+
+void	print_hex(size_t value, char c, int *count)
+{
+	if (value >= 16)
+	{
+		print_hex(value / 16, c, count);
+		print_hex(value % 16, c, count);
+	}
+	else
+		norm_killer(value, c, count);
 }

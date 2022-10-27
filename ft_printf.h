@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   percent_counter.c                                  :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uyilmaz <uyilmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 11:26:00 by uyilmaz           #+#    #+#             */
-/*   Updated: 2022/10/26 13:00:04 by uyilmaz          ###   ########.fr       */
+/*   Created: 2022/10/26 12:17:27 by uyilmaz           #+#    #+#             */
+/*   Updated: 2022/10/27 17:51:34 by uyilmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <unistd.h>
+# include <stdarg.h>
 
-int	percent_counter(char *first_param)
-{
-	int	count;
-	int	i;
-
-	count = 0;
-	i = 0;
-	while (first_param[i])
-	{
-		if (first_param[i] == '%' && first_param[i + 1] != '%')
-			count++;
-		i++;
-	}
-	return (count);
-}
+int		ft_printf(const char *s, ...);
+void	print_int(int n, int *count);
+void	print_char(char c, int *count);
+void	print_string(char *str, int *count);
+void	print_unsigned(unsigned int n, int *count);
+void	print_hex(size_t value, char c, int *count);
+void	print_ptr(size_t ptr, int *count);
+#endif
