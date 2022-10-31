@@ -6,12 +6,11 @@
 /*   By: uyilmaz <uyilmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:35:07 by uyilmaz           #+#    #+#             */
-/*   Updated: 2022/10/31 12:57:59 by uyilmaz          ###   ########.fr       */
+/*   Updated: 2022/10/31 13:20:24 by uyilmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <limits.h>
 
 void	formatter(va_list s, char f, int *count)
 {
@@ -51,4 +50,3 @@ int	ft_printf(const char *s, ...)
 	va_end(lst);
 	return (count);
 }
-
