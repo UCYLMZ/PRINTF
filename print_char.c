@@ -6,7 +6,7 @@
 /*   By: uyilmaz <uyilmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 11:47:45 by uyilmaz           #+#    #+#             */
-/*   Updated: 2022/10/27 17:53:32 by uyilmaz          ###   ########.fr       */
+/*   Updated: 2022/10/31 11:10:49 by uyilmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 void	print_char(char c, int *count)
 {
-	write (1, &c, 1);
-	*count += 1;
+	*count += write (1, &c, 1);
 }

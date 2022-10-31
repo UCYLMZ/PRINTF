@@ -6,11 +6,12 @@
 /*   By: uyilmaz <uyilmaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:35:07 by uyilmaz           #+#    #+#             */
-/*   Updated: 2022/10/27 18:27:07 by uyilmaz          ###   ########.fr       */
+/*   Updated: 2022/10/31 12:57:59 by uyilmaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <limits.h>
 
 void	formatter(va_list s, char f, int *count)
 {
@@ -23,9 +24,9 @@ void	formatter(va_list s, char f, int *count)
 	else if (f == 'u')
 		print_unsigned(va_arg(s, unsigned int), count);
 	else if (f == 'p')
-		print_ptr(va_arg(s, size_t), count);
+		print_ptr(va_arg(s, unsigned long), count);
 	else if (f == 'X' || f == 'x')
-		print_hex(f, va_arg(s, int), count);
+		print_hex(va_arg(s, unsigned int), f, count);
 	else if (f == '%')
 		print_char('%', count);
 }
@@ -50,3 +51,4 @@ int	ft_printf(const char *s, ...)
 	va_end(lst);
 	return (count);
 }
+
