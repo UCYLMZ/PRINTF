@@ -1,2 +1,2 @@
 # PRINTF
-A version of printf function's in stdio.h library.
+A version of printf function in stdio.h library.
